@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @AllArgsConstructor
-public class Clima_Plantacao {
+public class ClimaPlantacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

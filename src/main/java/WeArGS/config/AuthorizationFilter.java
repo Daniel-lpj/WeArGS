@@ -28,7 +28,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
 
         if (token != null){
             var usuario = tokenService.valideAndGetUserBy(token);
-            Authentication auth = new UsernamePasswordAuthenticationToken(usuario.getEmail(), null, usuario.getAuthorities() );
+            Authentication auth = new UsernamePasswordAuthenticationToken(usuario.getEmail_usuario(), null, usuario.getAuthorities() );
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
 

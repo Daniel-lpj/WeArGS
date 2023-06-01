@@ -1,16 +1,20 @@
 package WeArGS.models;
 
+import WeArGS.controllers.SementesController;
+import WeArGS.controllers.SoloController;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.EntityModel;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 
 @Data
@@ -44,5 +48,20 @@ public class Solo {
 
     @NotNull
     private Long nutrientes;
+
+    @NotNull
+    @ManyToOne
+    private Sementes semente;
+
+    public EntityModel<Solo> toModel(){
+        return EntityModel.of(
+                this,
+                linkTo(methodOn(SoloController.class).show(solo_id)).withSelfRel(),
+                linkTo(methodOn(SoloController.class).destroy(solo_id)).withRel("delete"),
+                linkTo(methodOn(SoloController.class).index(null, Pageable.unpaged())).withRel("all"),
+                linkTo(methodOn(SementesController.class).show(this.getSemente().getSemente_id())).withRel("roupa")
+        );
+    }
+
 
 }
