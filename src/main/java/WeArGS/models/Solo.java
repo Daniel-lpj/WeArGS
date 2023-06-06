@@ -25,6 +25,7 @@ public class Solo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "solo_id")
     private Long solo_id;
 
     @JsonProperty(value = "usuario_id", access = JsonProperty.Access.WRITE_ONLY)
@@ -32,26 +33,36 @@ public class Solo {
     private Long usuario_id;
 
     @NotBlank
+    @Column(name="tipo_solo", nullable = false)
     @Size(min = 5, max = 45)
     private String tipo_solo;
 
     @NotBlank
+    @Column(name="umidade_solo", nullable = false)
     @Size(min = 5, max = 45)
     private String umidade_solo;
 
     @NotBlank
+    @Column(name="ph_solo", nullable = false)
     @Size(min = 5, max = 45)
     private String ph_solo;
 
     @NotNull
+    @Column(name="materia_organica", nullable = false)
     private Long materia_organica;
 
     @NotNull
+    @Column(name="nutrientes")
     private Long nutrientes;
 
-    @NotNull
+
     @ManyToOne
+    @JoinColumn(name="semente_id")
     private Sementes semente;
+
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private Usuario usuario;
 
     public EntityModel<Solo> toModel(){
         return EntityModel.of(

@@ -1,10 +1,14 @@
 package WeArGS.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -21,6 +25,7 @@ public class ClimaPlantacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "clima_plantacao_id")
     private Long clima_plantacao_id;
 
     @JsonProperty(value = "usuario_id", access = JsonProperty.Access.WRITE_ONLY)
@@ -28,24 +33,28 @@ public class ClimaPlantacao {
     private Long usuario_id;
 
     @NotBlank
+    @Column(name="regiao", nullable = false)
     @Size(min = 5, max = 45)
     private String regiao;
 
     @NotBlank
+    @Column(name="clima", nullable = false)
     @Size(min = 5, max = 45)
     private String clima;
 
-    @NotNull
+    @Column(name="temperatura", nullable = false)
     private Long temperatura;
 
-    @NotNull
+    @Column(name="horas_sol", nullable = false)
     private Long horas_sol;
 
-    @NotNull
+    @Column(name="umidade", nullable = false)
     private Long umidade;
 
-    @NotNull
+    @Column(name="precipitacao", nullable = false)
     private Long precipitacao;
 
-
+    @ManyToOne
+    @JoinColumn(name="usuario_id")
+    private Usuario usuario;
 }

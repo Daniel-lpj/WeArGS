@@ -1,10 +1,10 @@
 package WeArGS.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,17 +26,24 @@ public class Usuario implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuario_id")
     private Long usuario_id;
+
+    @Column(name="nome_usuario", nullable = false)
     private String nome_usuario;
+
+    @Column(name="email_usuario", nullable = false)
     private String email_usuario;
+
+    @Column(name="senha_usuario", nullable = false)
     private String senha_usuario;
 
-    @NotBlank
+    @Column(name="data_criacao", nullable = false)
     private Date data_criacao;
 
-    @NotBlank
+    @Column(name="data_alteracao")
     private Date data_alteracao;
-
+ 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_USUARIO"));
