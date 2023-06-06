@@ -47,4 +47,5 @@ public class ClimaPlantacao {
     @NotNull
     private Long precipitacao;
 
+
 }

@@ -59,11 +59,11 @@ public class SoloController {
 
     @PostMapping
     @ApiResponses({
-            @ApiResponse(responseCode = "201", description = "roupa para experimentar cadastrada com sucesso"),
+            @ApiResponse(responseCode = "201", description = "solo cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "erro na validação dos dados da requisição")
     })
     public ResponseEntity<Object> create(@RequestBody @Valid Solo solo){
-        log.info("cadastrando roupa para experimentar: " + solo);
+        log.info("cadastrando novo solo: " + solo);
         soloRepository.save(solo);
         solo.setSemente(sementeRepository.findById(solo.getSemente().getSolo_id()).get());
         return ResponseEntity
@@ -72,13 +72,13 @@ public class SoloController {
     }
     @GetMapping("{id}")
     @Operation(
-            summary = "Detalhes da roupa",
-            description = "Retorna os dados de uma roupa com id especificado"
+            summary = "Detalhes do solo",
+            description = "Retorna os dados de um solo com id especificado"
     )
     public EntityModel<Solo> show(@PathVariable Long id){
-        log.info("buscando roupa com id " + id);
+        log.info("buscando solo com id " + id);
         var solo = soloRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "Roupa não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.FORBIDDEN, "solo não encontrado"));
 
         return solo.toModel();
 
@@ -86,9 +86,9 @@ public class SoloController {
 
     @DeleteMapping("{id}")
     public ResponseEntity<Solo> destroy(@PathVariable Long id){
-        log.info("apagando roupa com id " + id);
+        log.info("apagando solo com id " + id);
         var despesa = soloRepository.findById(id)
-                .orElseThrow(() -> new RestNotFoundException("roupa não encontrada"));
+                .orElseThrow(() -> new RestNotFoundException("solo não encontrado"));
 
         soloRepository.delete(despesa);
 
@@ -98,9 +98,9 @@ public class SoloController {
 
     @PutMapping("{id}")
     public EntityModel<Solo> update(@PathVariable Long id, @RequestBody @Valid Solo solo){
-        log.info("alterando roupa com id " + id);
+        log.info("alterando solo com id " + id);
         soloRepository.findById(id)
-                .orElseThrow(() -> new RestNotFoundException("roupa não encontrada"));
+                .orElseThrow(() -> new RestNotFoundException("solo não encontrado"));
 
         solo.setSolo_id(id);
         soloRepository.save(solo);

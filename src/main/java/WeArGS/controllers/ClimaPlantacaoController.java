@@ -29,27 +29,27 @@ public class ClimaPlantacaoController {
 
     @PostMapping
     public ResponseEntity<ClimaPlantacao> create(@RequestBody @Valid ClimaPlantacao climaPlantacao){
-        log.info("cadastrando nova roupa: " + climaPlantacao);
+        log.info("cadastrando novo clima para plantação: " + climaPlantacao);
         climaPlantacaoRepositoryRepository.save(climaPlantacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(climaPlantacao);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<ClimaPlantacao> show(@PathVariable Long id){
-        log.info("buscando semente com id " + id);
+        log.info("buscando clima para plantação com id " + id);
         return ResponseEntity.ok(getClimaPlantacao(id));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<ClimaPlantacao> destroy(@PathVariable Long id){
-        log.info("apagando roupa com id " + id);
+        log.info("apagando clima para plantação com id " + id);
         climaPlantacaoRepositoryRepository.delete(getClimaPlantacao(id));
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
     public ResponseEntity<ClimaPlantacao> update(@PathVariable Long id, @RequestBody @Valid ClimaPlantacao climaPlantacao){
-        log.info("alterando roupa com id " + id);
+        log.info("alterando clima para plantação com id " + id);
         getClimaPlantacao(id);
         climaPlantacao.setClima_plantacao_id(id);
         climaPlantacaoRepositoryRepository.save(climaPlantacao);
@@ -58,6 +58,6 @@ public class ClimaPlantacaoController {
 
     private ClimaPlantacao getClimaPlantacao(Long id) {
         return climaPlantacaoRepositoryRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Roupa não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "clima para plantação não encontrado"));
     }
 }
