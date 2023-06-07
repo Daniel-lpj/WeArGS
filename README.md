@@ -59,7 +59,7 @@ java -jar WeArGS.jar
 
 1. Utilize uma ferramenta como cURL, Postman ou Insomnia para enviar requisições HTTP para a API.
 
-2. Acesse os endpoints disponíveis [Endpoints](##Endpoints) para obter informações sobre os endpoints e os dados esperados nas requisições.
+2. Acesse os [endpoints](##Endpoints) disponíveis  para obter informações sobre os endpoints e os dados esperados nas requisições.
 
 3. Verifique os dados retornados pelas requisições, como JSON ou outros formatos de dados.
 
@@ -154,7 +154,8 @@ java -jar WeArGS.jar
 **Exemplo de corpo da resposta**
 
 ```js
-{ "solo" : {
+{ 
+    "solo" : {
       "solo_id": 1,
       "solo_nome": "Solo 1"
     },
