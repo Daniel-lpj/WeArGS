@@ -2,6 +2,13 @@
 
 Este projeto é uma API RESTful desenvolvida em Java utilizando o framework Spring Boot.
 
+## Integrantes
+- Bruna Gabriela Moreira - 96283
+- Daniel Luiz Paula Junior - 96235
+- Luana Mitsudo Coelho - 93909
+- Lucas de Morais Nascimento - 93267
+- Luiz Henrique Paiola Viana - 96124
+
 
 ## Pitch
 
