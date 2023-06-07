@@ -2,6 +2,11 @@
 
 Este projeto é uma API RESTful desenvolvida em Java utilizando o framework Spring Boot.
 
+
+## Pitch
+
+Acesse o vídeo do Pitch pelo link - https://youtu.be/PFTlK9E0SzM
+
 ## Pré-requisitos
 
 - JDK (Java Development Kit) 11 ou superior instalado
@@ -62,16 +67,16 @@ java -jar WeArGS.jar
 ## Endpoints
 - Solo
     - [Cadastrar](#cadastrar-solo)
-    - [Listar todas](#listar-solo)
+    - [Listar todos](#listar-solos)
     - [Apagar](#apagar-solo)
     - [Alterar](#alterar-solo)
     - [Mostrar os detalhes](#detalhar-solo)
-- Roupa
-    - [Cadastrar](#cadastrar-roupa)
-    - [Listar todas](#listar-roupa)
-    - [Apagar](#apagar-roupa)
-    - [Alterar](#alterar-roupa)
-    - [Mostrar os detalhes](#detalhar-roupa)
+- Sementes
+    - [Cadastrar](#cadastrar-semente)
+    - [Listar todas](#listar-sementes)
+    - [Apagar](#apagar-semente)
+    - [Alterar](#alterar-semente)
+    - [Mostrar os detalhes](#detalhar-semente)
 
 ---
 
@@ -143,7 +148,7 @@ java -jar WeArGS.jar
 
 ---
 
-### Listar Solo
+### Listar Solos
 `GET` /WeArGS/api/solo
 
 **Exemplo de corpo da resposta**
@@ -226,28 +231,39 @@ java -jar WeArGS.jar
 ---
 
 
-### Cadastrar Roupa
-`POST` /wear/api/ropupa
+### Cadastrar Semente
+`POST` /WeArGS/api/sementes
 
 | campo | tipo | obrigatório | descrição
 |-------|------|:-------------:|--
-| id | int | sim | é o id de uma roupa
-| nome | texto | sim | é o nome da roupa
-| codigo | texto | sim | é o código da roupa
-| preco | int | sim | é o preço da roupa
-| cor | lista | não | são as cores disponíveis para a roupa
-| tamanho | lista | não | são os tamanhos disponíveis para a roupa
+| semente_id | int | sim | é o id de uma semente previamente cadastrada
+| solo_id | int | sim | é o id do solo previamente cadastrado
+| clima_plantacao_id | int | sim | é o id de um clima de plantação previamente cadastrado
+| descricao | texto | sim | é o descrição da sementes
+| tipo_semente | texto | sim | é o tipo de semente
+| epoca_plantio | texto | sim | é a época do plantio
+| regiao | texto | sim | é a região de plantação da semente
+| condicoes_solo | texto | sim | é a condição do solo
+| requisito_luz | texto | sim | é a quantidade de luz incidente
+| resistencia | texto | sim | é a resistência da semente
+| periodo_colheita | texto | sim | é a período ideal para colheita
+
 
 **Exemplo de corpo do request**
 
 ```js
 {
-    "id" : 1,
-    "nome": "Camiseta",
-    "codigo": "123",
-    "preco": 50,00,
-    "cor": ["Azul", "Preto"],
-    "tamanho": ["P", "M", "G"]
+    "semente_id" : 1,
+    "solo_id" : 1,
+    "clima_plantacao_id" : 1,
+    "descricao": "Semente de fruto",
+    "tipo_semente": "Semente adubada",
+    "epoca_plantio": "12",
+    "regiao": "Sul",
+    "condicoes_solo": "10",
+    "requisito_luz": "5",
+    "resistencia": "10",
+    "periodo_colheita": "12"
 }
 ```
 
@@ -255,26 +271,29 @@ java -jar WeArGS.jar
 
 | código | descrição 
 |-|-
-| 201 | experimentar cadastrado com sucesso
+| 201 | semente cadastrada com sucesso
 | 400 | erro na validação dos dados da requisição
 
 ---
 
-### Detalhar Roupa
-`GET` /wear/api/roupa/{id}
+### Detalhar Semente
+`GET` /WeArGS/api/sementes/{id}
 
 **Exemplo de corpo da resposta**
 
 ```js
 {
-    "roupa": {
-        "id" : 1,
-        "nome": "Camiseta"
-    },
-    "codigo": "123",
-    "preco": 50,00,
-    "cor": ["Azul", "Preto"],
-    "tamanho": ["P", "M", "G"]
+    "semente_id" : 1,
+    "solo_id" : 1,
+    "clima_plantacao_id" : 1,
+    "descricao": "Semente de fruto",
+    "tipo_semente": "Sementes ortodoxas",
+    "epoca_plantio": "12",
+    "regiao": "Sul",
+    "condicoes_solo": "10",
+    "requisito_luz": "5",
+    "resistencia": "10",
+    "periodo_colheita": "12"
 }
 ```
 
@@ -283,35 +302,41 @@ java -jar WeArGS.jar
 | código | descrição 
 |-|-
 | 200 | dados retornados no corpo da resposta
-| 404 | não foi encontrada roupa com o id informado
+| 404 | não foi encontrada semente com o id informado
 
 ---
 
-### Listar Roupa
-`GET` /wear/api/roupa
+### Listar Sementes
+`GET` /WeArGS/api/sementes
 
 **Exemplo de corpo da resposta**
 
 ```js
 {
-   "roupa": {
-        "id" : 1,
-        "nome": "Camiseta"
-    },
-    "codigo": "123",
-    "preco": 50,00,
-    "cor": ["Azul", "Preto"],
-    "tamanho": ["P", "M", "G"]
+    "semente_id" : 1,
+    "solo_id" : 1,
+    "clima_plantacao_id" : 1,
+    "descricao": "Semente de fruto",
+    "tipo_semente": "Sementes ortodoxas",
+    "epoca_plantio": "12",
+    "regiao": "Sul",
+    "condicoes_solo": "10",
+    "requisito_luz": "5",
+    "resistencia": "10",
+    "periodo_colheita": "12"
 },
 {
-    "roupa": {
-        "id" : 2,
-        "nome": "Calça"
-    },
-    "codigo": "321",
-    "preco": 100,00,
-    "cor": ["Azul", "Preto", "Branco"],
-    "tamanho": ["P", "M", "G"]
+    "semente_id" : 2,
+    "solo_id" : 2,
+    "clima_plantacao_id" : 2,
+    "descricao": "Semente de flor",
+    "tipo_semente": "Sementes de pastagem",
+    "epoca_plantio": "1",
+    "regiao": "Norte",
+    "condicoes_solo": "10",
+    "requisito_luz": "5",
+    "resistencia": "10",
+    "periodo_colheita": "1"
 }
 ```
 
@@ -320,18 +345,18 @@ java -jar WeArGS.jar
 | código | descrição 
 |-|-
 | 200 | dados retornados no corpo da resposta
-| 404 | não foi encontrada roupa com o id informado
+| 404 | não foi encontrada semente com o id informado
 
 ---
 
-### Apagar Roupa
-`DELETE` /wear/api/roupa/{id}
+### Apagar Semente
+`DELETE` /WeArGS/api/sementes/{id}
 
 **Exemplo de corpo da resposta**
 
 ```js
 {
-    "mensagem": "Roupa apagada com sucesso"
+    "mensagem": "Semente apagada com sucesso"
 }
 ```
 
@@ -340,18 +365,18 @@ java -jar WeArGS.jar
 | código | descrição 
 |-|-
 | 200 | dados apagados com sucesso
-| 404 | não foi encontrada roupa com o id informado
+| 404 | não foi encontrada semente com o id informado
 
 ---
 
-### Alterar Roupa
-`PUT` /wear/api/roupa/{id}
+### Alterar Semente
+`PUT` /WeArGS/api/sementes/{id}
 
 **Exemplo de corpo da resposta**
 
 ```js
 {
-    "mensagem": "Roupa atualizada com sucesso"
+    "mensagem": "Semente atualizada com sucesso"
 }
 ```
 
@@ -360,5 +385,5 @@ java -jar WeArGS.jar
 | código | descrição 
 |-|-
 | 200 | dados atualizados com sucesso
-| 404 | não foi encontrada roupa com o id informado
+| 404 | não foi encontrada semente com o id informado
 
