@@ -25,12 +25,8 @@ public class ClimaPlantacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "clima_plantacao_id")
+    @Column(name = "clima_plantacao_id", insertable = false, updatable = false)
     private Long clima_plantacao_id;
-
-    @JsonProperty(value = "usuario_id", access = JsonProperty.Access.WRITE_ONLY)
-    @NotNull
-    private Long usuario_id;
 
     @NotBlank
     @Column(name="regiao", nullable = false)

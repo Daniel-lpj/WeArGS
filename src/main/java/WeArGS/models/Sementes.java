@@ -25,15 +25,8 @@ public class Sementes implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "semente_id", nullable = false)
     private Long semente_id;
-
-    @JsonProperty(value = "solo_id", access = JsonProperty.Access.WRITE_ONLY)
-    @NotNull
-    @Column(name = "semente_id")
-    private Long solo_id;
-
-    @NotNull
-    private Long clima_plantacao_id;
 
     @NotBlank
     @Column(name="descricao", nullable = false)

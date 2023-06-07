@@ -28,10 +28,6 @@ public class Solo {
     @Column(name = "solo_id")
     private Long solo_id;
 
-    @JsonProperty(value = "usuario_id", access = JsonProperty.Access.WRITE_ONLY)
-    @NotNull
-    private Long usuario_id;
-
     @NotBlank
     @Column(name="tipo_solo", nullable = false)
     @Size(min = 5, max = 45)
